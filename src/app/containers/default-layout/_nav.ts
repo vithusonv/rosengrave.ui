@@ -260,3 +260,26 @@ export const navItems: INavData[] = [
     attributes: { target: '_blank' }
   }
 ];
+
+export const mainItems: Array<any> = [
+  {
+    label: 'Home',
+    link: '/home',
+    order: 1,
+  },
+  {
+    label: 'About',
+    link: '/about',
+    order: 2,
+  },
+  {
+    label: 'How to Order',
+    link: '/how-to-order',
+    order: 3,
+  },
+  {
+    label: 'Products',
+    link: '/products',
+    order: 4,
+  },
+]

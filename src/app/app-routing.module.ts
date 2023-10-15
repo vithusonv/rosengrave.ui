@@ -6,11 +6,15 @@ import { Page404Component } from './views/pages/page404/page404.component';
 import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
+import { HomeComponent } from './views/home/home.component';
+import { AboutComponent } from './views/about/about.component';
+import { ProductsComponent } from './views/products/products.component';
+import { HowToOrderComponent } from './views/how-to-order/how-to-order.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -21,49 +25,20 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'dashboard',
-        loadChildren: () =>
-          import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
+        path: 'home',
+        component: HomeComponent
       },
       {
-        path: 'theme',
-        loadChildren: () =>
-          import('./views/theme/theme.module').then((m) => m.ThemeModule)
+        path: 'about',
+        component: AboutComponent
       },
       {
-        path: 'base',
-        loadChildren: () =>
-          import('./views/base/base.module').then((m) => m.BaseModule)
+        path: 'how-to-order',
+        component: HowToOrderComponent
       },
       {
-        path: 'buttons',
-        loadChildren: () =>
-          import('./views/buttons/buttons.module').then((m) => m.ButtonsModule)
-      },
-      {
-        path: 'forms',
-        loadChildren: () =>
-          import('./views/forms/forms.module').then((m) => m.CoreUIFormsModule)
-      },
-      {
-        path: 'charts',
-        loadChildren: () =>
-          import('./views/charts/charts.module').then((m) => m.ChartsModule)
-      },
-      {
-        path: 'icons',
-        loadChildren: () =>
-          import('./views/icons/icons.module').then((m) => m.IconsModule)
-      },
-      {
-        path: 'notifications',
-        loadChildren: () =>
-          import('./views/notifications/notifications.module').then((m) => m.NotificationsModule)
-      },
-      {
-        path: 'widgets',
-        loadChildren: () =>
-          import('./views/widgets/widgets.module').then((m) => m.WidgetsModule)
+        path: 'products',
+        component: ProductsComponent
       },
       {
         path: 'pages',

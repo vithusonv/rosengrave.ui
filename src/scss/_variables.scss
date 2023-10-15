@@ -8,18 +8,18 @@ $enable-deprecation-messages: false;
 
 // Color system
 
-// $white:     #fff;
-// $gray-base: #3c4b64;
-// $gray-100:  #ebedef;
-// $gray-200:  #d8dbe0;
-// $gray-300:  #c4c9d0;
-// $gray-400:  #b1b7c1;
-// $gray-500:  #9da5b1;
-// $gray-600:  #8a93a2;
-// $gray-700:  #768192;
-// $gray-800:  #636f83;
-// $gray-900:  #4f5d73;
-// $black:     #000015;
+$white:     #fff;
+$gray-base: #3c4b64;
+$gray-100:  #ebedef;
+$gray-200:  #d8dbe0;
+$gray-300:  #c4c9d0;
+$gray-400:  #b1b7c1;
+$gray-500:  #9da5b1;
+$gray-600:  #8a93a2;
+$gray-700:  #768192;
+$gray-800:  #636f83;
+$gray-900:  #4f5d73;
+$black:     #000015;
 
 // fusv-disable
 // $grays: (
@@ -64,57 +64,65 @@ $enable-deprecation-messages: false;
 // );
 // scss-docs-end colors-map
 
-// $primary-dark:  #1f1498;
-// $primary:       #321fdb;
-// $primary-50:    #988fed;
-// $primary-25:    #ccc7f6;
+$primary-dark:  #1f1498;
+$primary:       #321fdb;
+$primary-50:    #988fed;
+$primary-25:    #ccc7f6;
 
-// $secondary-dark:  #212233;
-// $secondary:       #9da5b1;
-// $secondary-50:    #9da5b1;
-// $secondary-25:    #ced2d8;
+$secondary-dark:  #212233;
+$secondary:       #9da5b1;
+$secondary-50:    #9da5b1;
+$secondary-25:    #ced2d8;
 
-// $success-dark:  #1b9e3e;
-// $success:       #2eb85c;
-// $success-50:    #96dbad;
-// $success-25:    #cbedd6;
+$success-dark:  #1b9e3e;
+$success:       #2eb85c;
+$success-50:    #96dbad;
+$success-25:    #cbedd6;
 
-// $info-dark:  #2982cc;
-// $info:       #39f;
-// $info-50:    #80c6ff;
-// $info-25:    #c0e6ff;
+$info-dark:  #2982cc;
+$info:       #39f;
+$info-50:    #80c6ff;
+$info-25:    #c0e6ff;
 
-// $warning-dark:  #f6960b;
-// $warning:       #f9b115;
-// $warning-50:    #fcd88a;
-// $warning-25:    #feecc5;
+$warning-dark:  #f6960b;
+$warning:       #f9b115;
+$warning-50:    #fcd88a;
+$warning-25:    #feecc5;
 
-// $danger-dark:  #d93737;
+$danger-dark:  #d93737;
+$danger:       tomato; // temp
 // $danger:       #e55353;
-// $danger-50:    #f2a9a9;
-// $danger-25:    #f9d4d4;
+$danger-50:    #f2a9a9;
+$danger-25:    #f9d4d4;
 
-// $light-dark:     $gray-100;
-// $light:          $gray-100;
-// $light-50:       shift-color($light, -70);
-// $light-25:       shift-color($light, -80);
+$light-dark:     $gray-100;
+$light:          $gray-100;
+$light-50:       shift-color($light, -70);
+$light-25:       shift-color($light, -80);
 
-// $dark-dark:      $gray-900;
-// $dark:           $gray-900;
-// $dark-50:        shift-color($dark, -70);
-// $dark-25:        shift-color($dark, -80);
+$dark-dark:      $gray-900;
+$dark:           $gray-900;
+$dark-50:        shift-color($dark, -70);
+$dark-25:        shift-color($dark, -80);
+
+// CUSTOM COLOR
+$rose-dark: tomato;
+$rose: tomato;
+$rose-50: shift-color($rose, -70);
+$rose-25: shift-color($rose, -80);
 
 // scss-docs-start theme-colors-map
-// $theme-colors: (
-//   "primary":    $primary,
-//   "secondary":  $secondary,
-//   "success":    $success,
-//   "info":       $info,
-//   "warning":    $warning,
-//   "danger":     $danger,
-//   "light":      $light,
-//   "dark":       $dark
-// );
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark,
+  "rose":       $rose,
+);
 // scss-docs-end theme-colors-map
 
 // Text colors
@@ -476,14 +484,15 @@ $enable-deprecation-messages: false;
 // $h6-font-size:                $font-size-base;
 
 // scss-docs-start font-sizes
-// $font-sizes: (
-//   1: $h1-font-size,
-//   2: $h2-font-size,
-//   3: $h3-font-size,
-//   4: $h4-font-size,
-//   5: $h5-font-size,
-//   6: $h6-font-size
-// );
+$font-sizes: (
+  // 1: $h1-font-size,
+  // 2: $h2-font-size,
+  // 3: $h3-font-size,
+  // 4: $h4-font-size,
+  // 5: $h5-font-size,
+  // 6: $h6-font-size
+  7: 12px
+);
 // scss-docs-end font-sizes
 
 // $headings-margin-bottom:      $spacer / 2;

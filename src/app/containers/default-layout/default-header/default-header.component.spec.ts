@@ -7,7 +7,7 @@ import {
   DropdownModule,
   GridModule,
   HeaderModule,
-  NavModule, SidebarModule
+  NavModule, NavbarModule, SidebarModule
 } from '@coreui/angular';
 import { IconSetService } from '@coreui/icons-angular';
 import { iconSubset } from '../../../icons/icon-subset';
@@ -22,7 +22,7 @@ describe('DefaultHeaderComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DefaultHeaderComponent],
-      imports: [GridModule, HeaderModule, NavModule, BadgeModule, AvatarModule, DropdownModule, BreadcrumbModule, RouterTestingModule, SidebarModule],
+      imports: [GridModule, HeaderModule, NavModule, NavbarModule, BadgeModule, AvatarModule, DropdownModule, BreadcrumbModule, RouterTestingModule, SidebarModule],
       providers: [IconSetService]
     })
       .compileComponents();

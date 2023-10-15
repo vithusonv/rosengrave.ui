@@ -15,6 +15,8 @@ import { AppComponent } from './app.component';
 // Import containers
 import { DefaultFooterComponent, DefaultHeaderComponent, DefaultLayoutComponent } from './containers';
 
+import { HomeModule } from './views/home/home.module';
+
 import {
   AvatarModule,
   BadgeModule,
@@ -22,6 +24,8 @@ import {
   ButtonGroupModule,
   ButtonModule,
   CardModule,
+  CarouselModule,
+  CollapseModule,
   DropdownModule,
   FooterModule,
   FormModule,
@@ -29,6 +33,7 @@ import {
   HeaderModule,
   ListGroupModule,
   NavModule,
+  NavbarModule,
   ProgressModule,
   SharedModule,
   SidebarModule,
@@ -61,6 +66,7 @@ const APP_CONTAINERS = [
     NavModule,
     ButtonModule,
     FormModule,
+    NavbarModule,
     UtilitiesModule,
     ButtonGroupModule,
     ReactiveFormsModule,
@@ -72,7 +78,10 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    CollapseModule,
+    CarouselModule,
+    HomeModule
   ],
   providers: [
     {
