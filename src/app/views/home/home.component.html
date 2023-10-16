@@ -22,16 +22,16 @@
 
     <div class="mt-3">
         <c-row>
-          <c-col *ngFor="let p of products">
+          <c-col *ngFor="let p of products; index as i">
             <c-card class="mb-3">
-              <img cCardImg="top" src="{{ p.images[0]?.image_url }}">
+              <img cCardImg="top" src="{{ p.images[0]?.image_url }}" [style.height.px]="215">
               <c-card-body>
                 <h6 cCardTitle>{{ p.product_name }}</h6>
                 <p cCardText>{{ p.short_description }}</p>
               </c-card-body>
               <c-card-footer>
                 <div class="d-grid gap-2">
-                  <button cButton color="warning" class="text-uppercase fs-7 fw-light" cOffcanvasToggle="OffcanvasBottom">
+                  <button cButton color="warning" class="text-uppercase fs-7 fw-light" cOffcanvasToggle="OffcanvasBottom" (click)="setProductToCustomize(i)">
                     <svg [cIcon]="icons.cilCart" title="Add to cart"></svg>
                     Add to cart</button>
                 </div>
@@ -66,12 +66,11 @@
         </ng-template>
         <ng-template cTemplateId="accordionBodyTemplate">
           <div class="accordion-body">
-            <strong>This is the first item's accordion body.</strong> It is hidden by default,
-            until the collapse plugin adds the appropriate classes that we use to style each
-            element. These classes control the overall appearance, as well as the showing and
-            hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-            our default variables. It's also worth noting that just about any HTML can go within
-            the <code>.accordion-body</code>, though the transition does limit overflow.
+            <h4>Please select a material</h4>
+            <select aria-label="Large select example" cSelect class="mb-3" sizing="lg">
+              <option>Open this select menu</option>
+              <option *ngFor="let m of materials" value="{{ m.name }}">{{ m.name }}</option>
+            </select>
           </div>
         </ng-template>
       </c-accordion-item>
@@ -82,13 +81,15 @@
           </button>
         </ng-template>
         <ng-template cTemplateId="accordionBodyTemplate">
-          <div class="accordion-body">
-            <strong>This is the second item's accordion body.</strong> It is hidden by default,
-            until the collapse plugin adds the appropriate classes that we use to style each
-            element. These classes control the overall appearance, as well as the showing and
-            hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-            our default variables. It's also worth noting that just about any HTML can go within
-            the <code>.accordion-body</code>, though the transition does limit overflow.
+          <div class="accordion-body d-flex align-items-center">
+            <c-row>
+              <c-col md="2" *ngFor="let e of engravings" class="text-center">
+                <c-card class="mb-3">
+                  <c-card-header class="fs-7 fw-light">{{ e.label }}</c-card-header>
+                  <img cCardImg="top" src="{{ e.image_url }}" [style.height.px]="80">
+                </c-card>
+              </c-col>
+            </c-row>
           </div>
         </ng-template>
       </c-accordion-item>

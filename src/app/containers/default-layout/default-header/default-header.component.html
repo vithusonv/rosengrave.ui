@@ -3,8 +3,11 @@
     <c-navbar colorScheme="light" expand="md" placement="sticky-top" [style.width.%]="100">
       <c-container fluid>
         <button [cNavbarToggler]="collapseRef"></button>
-        <a cNavbarBrand class="fw-light fs-6 logo-text-clr">
+        <!-- <a cNavbarBrand class="fw-light fs-6 logo-text-clr">
           ROSENGRAVE 
+        </a> -->
+        <a cNavbarBrand routerLink="/" class="fw-light fs-6 logo-text-clr">
+          <img src="./assets/img/logo.png" alt="" width="200"/>
         </a>
         <div #collapseRef="cCollapse" navbar cCollapse>
           <c-navbar-nav class="me-auto mb-2 mb-lg-0 fs-6 text-uppercase">

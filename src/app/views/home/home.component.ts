@@ -12,6 +12,9 @@ export class HomeComponent {
   public slides: any[] = new Array(3).fill({id: -1, src: '', title: '', subtitle: ''});
   public icons: any;
   public products: any;
+  public selectedProduct: any;
+  public materials: any;
+  public engravings: any;
 
   constructor(
     private http: HttpClient
@@ -23,6 +26,11 @@ export class HomeComponent {
     this.http.get('http://localhost:4000/api/products')
     .subscribe((products) => {
       this.products = products;
+    });
+
+    this.http.get('http://localhost:4000/api/predefined-engravings')
+    .subscribe((engravings) => {
+      this.engravings = engravings;
     });
 
     this.slides[0] = {
@@ -43,5 +51,13 @@ export class HomeComponent {
       title: 'Third slide',
       subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
     }
+  }
+
+  setProductToCustomize(index: number): void {
+    this.selectedProduct = this.products[index];
+    this.http.get(`http://localhost:4000/api/customizations/${this.selectedProduct.product_id}/1`)   
+    .subscribe((material) => {
+      this.materials = material;
+    });
   }
 }
