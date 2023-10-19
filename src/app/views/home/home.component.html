@@ -1,60 +1,46 @@
 <c-container>
-    <c-carousel [dark]="false" [wrap]="false">
-        <c-carousel-indicators></c-carousel-indicators>
-        <c-carousel-inner>
-        <c-carousel-item *ngFor="let slide of slides; index as i;">
-            <img
-            [src]="slide.src"
-            alt="{{slide.title}}"
-            class="d-block w-100"
-            loading="lazy"
-            [style.height.px]="600"
-            />
-            <c-carousel-caption class="d-none d-md-block">
-            <h3>{{slide.title}}</h3>
-            <p>{{slide.subtitle}}</p>
-            </c-carousel-caption>
-        </c-carousel-item>
-        </c-carousel-inner>
-        <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
-        <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
-    </c-carousel>
+  <c-carousel [dark]="false" [wrap]="false">
+    <c-carousel-indicators></c-carousel-indicators>
+    <c-carousel-inner>
+      <c-carousel-item *ngFor="let slide of slides; index as i;">
+        <img [src]="slide.src" alt="{{slide.title}}" class="d-block w-100" loading="lazy" [style.height.px]="600" />
+        <c-carousel-caption class="d-none d-md-block">
+          <h3>{{slide.title}}</h3>
+          <p>{{slide.subtitle}}</p>
+        </c-carousel-caption>
+      </c-carousel-item>
+    </c-carousel-inner>
+    <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
+    <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
+  </c-carousel>
 
-    <div class="mt-3">
-        <c-row>
-          <c-col *ngFor="let p of products; index as i">
-            <c-card class="mb-3">
-              <img cCardImg="top" src="{{ p.images[0]?.image_url }}" [style.height.px]="215">
-              <c-card-body>
-                <h6 cCardTitle>{{ p.product_name }}</h6>
-                <p cCardText>{{ p.short_description }}</p>
-              </c-card-body>
-              <c-card-footer>
-                <div class="d-grid gap-2">
-                  <button cButton color="warning" class="text-uppercase fs-7 fw-light" cOffcanvasToggle="OffcanvasBottom" (click)="setProductToCustomize(i)">
-                    <svg [cIcon]="icons.cilCart" title="Add to cart"></svg>
-                    Add to cart</button>
-                </div>
-              </c-card-footer>
-            </c-card>
-          </c-col>
-        </c-row>
-    </div>
+  <div class="mt-3">
+    <c-row>
+      <c-col *ngFor="let p of products; index as i" md="3">
+        <c-card class="mb-3">
+          <img cCardImg="top" src="{{ p.images[0]?.image_url }}" [style.height.px]="215">
+          <c-card-body>
+            <h6 cCardTitle>{{ p.product_name }}</h6>
+            <p cCardText>{{ p.short_description }}</p>
+          </c-card-body>
+          <c-card-footer>
+            <div class="d-grid gap-2">
+              <button cButton color="warning" class="text-uppercase fs-7 fw-light" cOffcanvasToggle="OffcanvasBottom"
+                (click)="setProductToCustomize(i)">
+                <svg [cIcon]="icons.cilCart" title="Add to cart"></svg>
+                Add to cart</button>
+            </div>
+          </c-card-footer>
+        </c-card>
+      </c-col>
+    </c-row>
+  </div>
 </c-container>
 
-<c-offcanvas
-  placement="bottom"
-  id="OffcanvasBottom"
-  [style.height.%]="100"
->
+<c-offcanvas placement="bottom" id="OffcanvasBottom" [style.height.%]="100">
   <c-offcanvas-header>
     <h6 cOffcanvasTitle>Customise Item</h6>
-    <button
-      cButtonClose
-      class="text-reset"
-      cOffcanvasToggle="OffcanvasBottom"
-      aria-label="Close"
-    ></button>
+    <button cButtonClose class="text-reset" cOffcanvasToggle="OffcanvasBottom" aria-label="Close"></button>
   </c-offcanvas-header>
   <c-offcanvas-body>
     <c-accordion>
@@ -132,7 +118,7 @@
       <button cButton color="dark" class="text-uppercase fs-7 fw-light me-1" cOffcanvasToggle="OffcanvasBottom">
         <svg [cIcon]="icons.cilX" title="Cancel"></svg>
         Cancel</button>
-        
+
       <button cButton color="warning" class="text-uppercase fs-7 fw-light">
         <svg [cIcon]="icons.cilCart" title="Add to cart"></svg>
         Add to cart</button>
