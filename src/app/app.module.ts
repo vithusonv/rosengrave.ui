@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { DefaultFooterComponent, DefaultHeaderComponent, DefaultLayoutComponent } from './containers';
 
 import { HomeModule } from './views/home/home.module';
+import { ProductsModule } from './views/products/products.module';
 
 import {
   AvatarModule,
@@ -81,7 +82,8 @@ const APP_CONTAINERS = [
     NgScrollbarModule,
     CollapseModule,
     CarouselModule,
-    HomeModule
+    HomeModule,
+    ProductsModule
   ],
   providers: [
     {
