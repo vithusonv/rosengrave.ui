@@ -21,12 +21,10 @@ export class ProductsComponent {
     this.http.get<any>('https://rosengrave-api-25bb9d185119.herokuapp.com/api/product-categories')
       .subscribe((pc) => {
         this.productCategories = pc;
-        console.log(pc);
       });
   }
 
   onProductView(index: number): void {
-    console.log(index);
     this.products = this.productCategories[index].products;
   }
 }
