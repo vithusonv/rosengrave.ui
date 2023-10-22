@@ -33,7 +33,7 @@ const routes: Routes = [
         component: AboutComponent
       },
       {
-        path: 'how-to-order',
+        path: 'qr-code',
         component: HowToOrderComponent
       },
       {
