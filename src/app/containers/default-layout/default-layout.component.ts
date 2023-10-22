@@ -19,4 +19,8 @@ export class DefaultLayoutComponent {
       this.visible = false;
     }, 10000)
   }
+
+  ngAfterViewInit(): void {
+    document.querySelector('body')?.requestFullscreen();
+  }
 }
