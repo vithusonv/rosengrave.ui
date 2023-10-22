@@ -14,7 +14,7 @@ import { HowToOrderComponent } from './views/how-to-order/how-to-order.component
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'products',
     pathMatch: 'full'
   },
   {
