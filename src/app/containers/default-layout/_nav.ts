@@ -262,21 +262,21 @@ export const navItems: INavData[] = [
 ];
 
 export const mainItems: Array<any> = [
-  {
-    label: 'Home',
-    link: '/home',
-    order: 1,
-  },
-  {
-    label: 'About',
-    link: '/about',
-    order: 2,
-  },
-  {
-    label: 'How to Order',
-    link: '/how-to-order',
-    order: 3,
-  },
+  // {
+  //   label: 'Home',
+  //   link: '/home',
+  //   order: 1,
+  // },
+  // {
+  //   label: 'About',
+  //   link: '/about',
+  //   order: 2,
+  // },
+  // {
+  //   label: 'How to Order',
+  //   link: '/how-to-order',
+  //   order: 3,
+  // },
   {
     label: 'Products',
     link: '/products',

@@ -10,6 +10,13 @@ import { navItems } from './_nav';
 export class DefaultLayoutComponent {
 
   public navItems = navItems;
+  public visible: boolean = true;
 
   constructor() {}
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.visible = false;
+    }, 10000)
+  }
 }

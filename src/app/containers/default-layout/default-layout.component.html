@@ -47,3 +47,16 @@
   <!--app footer-->
   <app-default-footer />
 </div>
+
+<c-modal #staticBackdropModal backdrop="static" id="staticBackdropModal" [visible]="visible">
+  <c-modal-header>
+    <h5 cModalTitle>Exciting Launch Coming Soon!</h5>
+    <button [cModalToggle]="staticBackdropModal.id" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    Welcome to Our New Home! <br/><br/>
+    We're thrilled to introduce our brand new website. Please pardon our digital dust as we put on the finishing touches. Stay tuned for an amazing experience!</c-modal-body>
+  <c-modal-footer>
+    <button cButton color="dark">Awesome!</button>
+  </c-modal-footer>
+</c-modal>
