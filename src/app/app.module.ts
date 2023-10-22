@@ -33,6 +33,7 @@ import {
   GridModule,
   HeaderModule,
   ListGroupModule,
+  ModalModule,
   NavModule,
   NavbarModule,
   ProgressModule,
@@ -83,7 +84,8 @@ const APP_CONTAINERS = [
     CollapseModule,
     CarouselModule,
     HomeModule,
-    ProductsModule
+    ProductsModule,
+    ModalModule
   ],
   providers: [
     {
