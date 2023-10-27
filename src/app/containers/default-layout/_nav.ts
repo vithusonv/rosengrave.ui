@@ -282,4 +282,9 @@ export const mainItems: Array<any> = [
     link: '/products',
     order: 4,
   },
+  {
+    label: 'QR Code',
+    link: '/qr-code',
+    order: 5
+  }
 ]
