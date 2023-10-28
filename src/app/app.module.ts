@@ -17,6 +17,7 @@ import { DefaultFooterComponent, DefaultHeaderComponent, DefaultLayoutComponent 
 
 import { HomeModule } from './views/home/home.module';
 import { ProductsModule } from './views/products/products.module';
+import { CartModule } from './components/cart/cart.module';
 
 import {
   AvatarModule,
@@ -85,7 +86,8 @@ const APP_CONTAINERS = [
     CarouselModule,
     HomeModule,
     ProductsModule,
-    ModalModule
+    ModalModule,
+    CartModule
   ],
   providers: [
     {

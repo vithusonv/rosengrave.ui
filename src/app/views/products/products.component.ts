@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { cilCart, cilPencil, cilX } from '@coreui/icons';
+import { Product } from '../../models/product.model';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-products',
@@ -13,7 +15,8 @@ export class ProductsComponent {
   public products: Array<any> = [];
   public icons: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    private cartService: CartService) {
     this.icons = { cilCart, cilX, cilPencil };
   }
 
@@ -22,9 +25,18 @@ export class ProductsComponent {
       .subscribe((pc) => {
         this.productCategories = pc;
       });
+
   }
 
   onProductView(index: number): void {
     this.products = this.productCategories[index].products;
+  }
+
+  onAddToCart(product: Product): void {
+    // console.log(product);
+    this.cartService.addToCart(product);
+
+    const cart = this.cartService.getCartItems();
+    console.log(cart);
   }
 }

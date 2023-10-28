@@ -1,0 +1,21 @@
+<c-offcanvas
+  id="OffcanvasScroll"
+  [scroll]="true"
+  placement="end"
+  #offcanvasScroll
+>
+<c-offcanvas-header>
+    <h5 cOffcanvasTitle>Products</h5>
+    <button
+      aria-label="Close"
+      cButtonClose
+      [cOffcanvasToggle]="offcanvasScroll.id"
+      class="text-reset"
+    ></button>
+  </c-offcanvas-header>
+  <c-offcanvas-body>
+    <p>
+      Try scrolling the rest of the page to see this option in action.
+    </p>
+  </c-offcanvas-body>
+</c-offcanvas>
