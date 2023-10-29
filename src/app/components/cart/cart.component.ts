@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { CartItem } from 'src/app/models/cart-item.model';
 import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
@@ -7,16 +9,33 @@ import { CartService } from 'src/app/services/cart/cart.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent {
-  private offcanvasVisible: boolean = false;
+  public offcanvasVisible: boolean = false;
+  public cartItemsSubscription: Subscription = Subscription.EMPTY;
+  public cartItems: Array<CartItem> = [];
 
   constructor(private cartService: CartService) {
     cartService.offcanvasVisible.subscribe((isVisible) => {
       this.offcanvasVisible = isVisible;
     });
+
+    this.cartItemsSubscription = this.cartService.cartItems$.subscribe((cartItems) => {
+      this.cartItems = cartItems;
+    });
   }
-  
+
   ngOnInit(): void {
-    const test = this.cartService.getCartItems();
-    console.log(test);
+
+  }
+
+  ngOnDestroy(): void {
+    this.cartItemsSubscription.unsubscribe();
+  }
+
+  toggleCart(visible: boolean): void {
+    this.cartService.toggleOffcanvas(visible);
+  }
+
+  getTotalCartPrice(): string {
+    return this.cartService.getTotalPrice();
   }
 }

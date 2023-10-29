@@ -8,37 +8,64 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CartService {
   private cartItems: Array<CartItem> = [];
+  private cartItemsSubject = new BehaviorSubject<CartItem[]>(this.cartItems);
+  private totalCartPrice: number = 0;
+
+  public cartItems$ = this.cartItemsSubject.asObservable();
   public offcanvasVisible = new BehaviorSubject<boolean>(false);
- 
-  constructor() {}
+
+  constructor() { }
 
   getCartItems(): CartItem[] {
     return this.cartItems;
   }
 
   addToCart(product: Product) {
-    const existingItem = this.cartItems.find((item) => item.product.id === product.product_id);
+    const existingItem = this.cartItems.find((item) => item.product.product_id === product.product_id);
 
-    if(existingItem) {
+    if (existingItem) {
       existingItem.quantity++;
+      existingItem.totalPrice = existingItem.product.price * existingItem.quantity;
     } else {
-      this.cartItems.push({ product, quantity: 1});
+      const newItem: CartItem = {
+        product,
+        quantity: 1,
+        totalPrice: product.product_price,
+      }
+
+      this.cartItems.push(newItem);
     }
+
+    // update the total price
+    this.calculateTotalPrice();
+
+    // update the cart items subject to trigger updates
+    this.cartItemsSubject.next(this.cartItems);
   }
 
   removeFromCart(item: CartItem): void {
-    const index = this.cartItems.findIndex((i) => i.product.id === item.product.product_id);
+    const index = this.cartItems.findIndex((i) => i.product.product_id === item.product.product_id);
 
-    if(index !== -1) {
-      if(this.cartItems[index].quantity > 1) {
+    if (index !== -1) {
+      if (this.cartItems[index].quantity > 1) {
         this.cartItems[index].quantity--;
       } else {
-        this.cartItems.splice(index, 1);          
+        this.cartItems.splice(index, 1);
       }
     }
   }
 
-  toggleOffcanvas(): void {
-    this.offcanvasVisible.next(!this.offcanvasVisible.value);
+  toggleOffcanvas(visible: boolean): void {
+    this.offcanvasVisible.next(visible);
+  }
+
+  getTotalPrice(): string {
+    return this.totalCartPrice.toFixed(2);
+  }
+
+  private calculateTotalPrice(): void {
+    this.totalCartPrice = this.cartItems.reduce((total, item) => {
+      return total + item.product.product_price * item.quantity;
+    }, 0);
   }
 }
