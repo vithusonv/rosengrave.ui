@@ -4,7 +4,7 @@
     <h5 cOffcanvasTitle>Cart</h5>
     <button aria-label="Close" cButtonClose [cOffcanvasToggle]="offcanvasScroll.id" class="text-reset"></button>
   </c-offcanvas-header>
-  <c-offcanvas-body>
+  <c-offcanvas-body class="scroll-cart">
     <h6 *ngIf="!cartItems.length">No items in cart!</h6>
     <c-card class="mb-3" *ngFor="let item of cartItems">
       <c-row class="g-0">
@@ -35,7 +35,7 @@
     <hr />
     <h5>Total: ${{ getTotalCartPrice() }} CAD</h5>
     <div class="d-grid gap-2">
-      <button cButton color="info" class="text-uppercase fs-7 fw-light mt-5">
+      <button cButton color="info" class="text-uppercase fs-7 fw-light mt-4">
         Order</button>
     </div>
   </c-offcanvas-body>
