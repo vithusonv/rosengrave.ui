@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { cilCart, cilPencil, cilX } from '@coreui/icons';
 import { Product } from '../../models/product.model';
 import { CartService } from '../../services/cart/cart.service';
+import { CustomizeItemService } from 'src/app/services/customize-item/customize-item.service';
 
 @Component({
   selector: 'app-products',
@@ -16,7 +17,8 @@ export class ProductsComponent {
   public icons: any;
 
   constructor(private http: HttpClient,
-    private cartService: CartService) {
+    private cartService: CartService,
+    private customizeItemService: CustomizeItemService) {
     this.icons = { cilCart, cilX, cilPencil };
   }
 
@@ -38,5 +40,10 @@ export class ProductsComponent {
 
     const cart = this.cartService.getCartItems();
     console.log(cart);
+  }
+
+  onCustomizeProduct(product: Product): void {
+    this.customizeItemService.toggleOffCanvas(true);
+    this.customizeItemService.setProductToCustomize(product);
   }
 }

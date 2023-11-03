@@ -1,26 +1,11 @@
-<c-offcanvas placement="bottom" id="OffcanvasBottom" [style.height.%]="100">
+<c-offcanvas placement="bottom" id="OffcanvasBottom" [style.height.%]="100" [visible]="offCanvasVisible"
+    (visibleChange)="toggleCustomization($event)">
     <c-offcanvas-header>
         <h6 cOffcanvasTitle>Customise Item</h6>
         <button cButtonClose class="text-reset" cOffcanvasToggle="OffcanvasBottom" aria-label="Close"></button>
     </c-offcanvas-header>
     <c-offcanvas-body>
         <c-accordion>
-            <c-accordion-item #item0="cAccordionItem" [visible]="false">
-                <ng-template cTemplateId="accordionHeaderTemplate">
-                    <button (click)="item0.toggleItem()" [collapsed]="!item0.visible" cAccordionButton>
-                        Select your material
-                    </button>
-                </ng-template>
-                <ng-template cTemplateId="accordionBodyTemplate">
-                    <div class="accordion-body">
-                        <h4>Please select a material</h4>
-                        <select aria-label="Large select example" cSelect class="mb-3" sizing="lg">
-                            <option>Open this select menu</option>
-                            <option *ngFor="let m of materials" value="{{ m.name }}">{{ m.name }}</option>
-                        </select>
-                    </div>
-                </ng-template>
-            </c-accordion-item>
             <c-accordion-item #item1="cAccordionItem" [visible]="false">
                 <ng-template cTemplateId="accordionHeaderTemplate">
                     <button (click)="item1.toggleItem()" [collapsed]="!item1.visible" cAccordionButton>

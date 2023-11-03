@@ -18,6 +18,7 @@ import { DefaultFooterComponent, DefaultHeaderComponent, DefaultLayoutComponent 
 import { HomeModule } from './views/home/home.module';
 import { ProductsModule } from './views/products/products.module';
 import { CartModule } from './components/cart/cart.module';
+import { CustomizeItemModule } from './components/customize-item/customize-item.module';
 
 import {
   AvatarModule,
@@ -87,7 +88,8 @@ const APP_CONTAINERS = [
     HomeModule,
     ProductsModule,
     ModalModule,
-    CartModule
+    CartModule,
+    CustomizeItemModule
   ],
   providers: [
     {
