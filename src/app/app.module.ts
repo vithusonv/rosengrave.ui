@@ -19,6 +19,7 @@ import { HomeModule } from './views/home/home.module';
 import { ProductsModule } from './views/products/products.module';
 import { CartModule } from './components/cart/cart.module';
 import { CustomizeItemModule } from './components/customize-item/customize-item.module';
+import { FontSelectorModule } from './components/font-selector/font-selector.module';
 
 import {
   AccordionModule,
@@ -91,7 +92,8 @@ const APP_CONTAINERS = [
     ModalModule,
     CartModule,
     CustomizeItemModule,
-    AccordionModule
+    AccordionModule,
+    FontSelectorModule,
   ],
   providers: [
     {

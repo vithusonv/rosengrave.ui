@@ -20,17 +20,22 @@ export class CartService {
     return this.cartItems;
   }
 
-  addToCart(product: Product) {
-    const existingItem = this.cartItems.find((item) => item.product.product_id === product.product_id);
+  addToCart(product: Product | any, design: any, text: string) {
+    const existingItem = this.cartItems.find((item) => item.product.product_id === product.product_id
+      && item.design.predefined_engraving_id === design.predefined_engraving_id
+      && item.text === text
+    );
 
     if (existingItem) {
       existingItem.quantity++;
-      existingItem.totalPrice = existingItem.product.price * existingItem.quantity;
+      existingItem.totalPrice = existingItem.product.product_price * existingItem.quantity;
     } else {
       const newItem: CartItem = {
         product,
         quantity: 1,
         totalPrice: product.product_price,
+        design,
+        text
       }
 
       this.cartItems.push(newItem);

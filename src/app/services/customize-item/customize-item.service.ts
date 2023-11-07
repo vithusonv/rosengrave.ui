@@ -15,11 +15,19 @@ export class CustomizeItemService {
 
   toggleOffCanvas(visible: boolean): void {
     this.offCanvasVisible.next(visible);
+
+    if (!visible) {
+      this.clearProduct();
+    }
   }
 
   setProductToCustomize(product: Product): void {
     // this.http.get('');
     console.log(product);
     this.product.next(product);
+  }
+
+  private clearProduct(): void {
+    this.product.next(undefined);
   }
 }

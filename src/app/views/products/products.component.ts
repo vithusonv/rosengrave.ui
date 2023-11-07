@@ -34,14 +34,6 @@ export class ProductsComponent {
     this.products = this.productCategories[index].products;
   }
 
-  onAddToCart(product: Product): void {
-    // console.log(product);
-    this.cartService.addToCart(product);
-
-    const cart = this.cartService.getCartItems();
-    console.log(cart);
-  }
-
   onCustomizeProduct(product: Product): void {
     this.customizeItemService.toggleOffCanvas(true);
     this.customizeItemService.setProductToCustomize(product);

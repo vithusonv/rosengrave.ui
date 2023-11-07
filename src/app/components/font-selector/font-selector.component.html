@@ -1,0 +1,47 @@
+<div class="font-selector" *ngIf="design?.predefined_engraving_id === 'none'">
+    <c-row class="mb-1">
+        <c-col>
+            <c-input-group>
+                <div cFormFloating>
+                    <input cFormControl type="text" [(ngModel)]="text" placeholder="Type text here">
+                    <label cLabel for="floatingInput">Text</label>
+                </div>
+                <div cFormFloating>
+                    <select cSelect id="floatingSelectGrid" [(ngModel)]="selectedFont">
+                        <option *ngFor="let font of fonts" value="{{ font }}">{{ font }}</option>
+                    </select>
+                    <label cLabel for="floatingSelectGrid">Font</label>
+                </div>
+            </c-input-group>
+        </c-col>
+        <c-col>
+            <label for="customRange1" class="form-label">Size:
+                <div class="fw-semibold d-inline">{{ fontSize }}px</div>
+            </label>
+            <input type="range" class="form-range" id="customRange1" min="20" max="70" [(ngModel)]="fontSize">
+        </c-col>
+    </c-row>
+    <c-row class="mx-1">
+        <header class="header pb-0 mb-2">
+            <span class="header-brand">Preview</span>
+        </header>
+        <div class="font-preview" [style.font-family]="selectedFont" [style.font-size.px]="fontSize"
+            class="d-flex justify-content-start">
+            {{ text ? text : selectedFont }}
+        </div>
+    </c-row>
+</div>
+
+<div class="font-selector" *ngIf="design?.predefined_engraving_id !== 'none'">
+    <c-row class="mb-1">
+        <c-col>
+            <c-input-group>
+                <div cFormFloating>
+                    <input cFormControl type="text" [(ngModel)]="text" placeholder="Type text here"
+                        (input)="onTextChange($event)">
+                    <label cLabel for="floatingInput">Enter your text</label>
+                </div>
+            </c-input-group>
+        </c-col>
+    </c-row>
+</div>

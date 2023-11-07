@@ -16,13 +16,15 @@
                     <div class="accordion-body d-flex align-items-center">
                         <c-row>
                             <c-col md="2" *ngFor="let e of engravings; index as i" class="text-center">
-                                <!-- <label for="engraving"> -->
-                                    <input type="radio" name="engraving" value="{{ e.predefined_engraving_id }}" id="engraving" />
+                                <label>
+                                    <input type="radio" name="engraving" value="{{ e.predefined_engraving_id }}"
+                                        id="engraving" (change)="onEngravingSelect(e)" />
                                     <c-card class="mb-3 card">
-                                        <c-card-header class="fs-7 fw-light">{{ e.label }}</c-card-header>
-                                        <img cCardImg="top" src="{{ e.image_url }}" [style.height.px]="80">
+                                        <c-card-header class="fs-7 fw-semibold">{{ e.label }}</c-card-header>
+                                        <img cCardImg="top" class="card-img" src="{{ e.image_url }}"
+                                            [style.height.px]="165">
                                     </c-card>
-                                <!-- </label> -->
+                                </label>
                             </c-col>
                         </c-row>
                     </div>
@@ -36,12 +38,7 @@
                 </ng-template>
                 <ng-template cTemplateId="accordionBodyTemplate">
                     <div class="accordion-body">
-                        <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                        until the collapse plugin adds the appropriate classes that we use to style each
-                        element. These classes control the overall appearance, as well as the showing and
-                        hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                        our default variables. It's also worth noting that just about any HTML can go within
-                        the <code>.accordion-body</code>, though the transition does limit overflow.
+                        <app-font-selector [design]="design" (textSelection)="onTextChange($event)"></app-font-selector>
                     </div>
                 </ng-template>
             </c-accordion-item>
@@ -52,13 +49,17 @@
                     </button>
                 </ng-template>
                 <ng-template cTemplateId="accordionBodyTemplate">
-                    <div class="accordion-body">
-                        <strong>This is the third item's accordion body.</strong> It is hidden by default,
-                        until the collapse plugin adds the appropriate classes that we use to style each
-                        element. These classes control the overall appearance, as well as the showing and
-                        hiding via CSS transitions. You can modify any of this with custom CSS or overriding
-                        our default variables. It's also worth noting that just about any HTML can go within
-                        the <code>.accordion-body</code>, though the transition does limit overflow.
+                    <div class="accordion-body d-flex">
+                        <label class="text-center" *ngIf="design">
+                            <c-card class="mb-3">
+                                <c-card-header class="fs-7 fw-semibold">{{ design.label }}</c-card-header>
+                                <img cCardImg="top" src="{{ design.image_url }}" [style.height.px]="165">
+                            </c-card>
+                        </label>
+                        <ng-container *ngIf="text">
+                            <div class="plus mx-5 fs-1 fw-bold" *ngIf="design">+</div>
+                            <div class="d-flex align-items-center fs-3 fw-light">{{ text }}</div>
+                        </ng-container>
                     </div>
                 </ng-template>
             </c-accordion-item>
@@ -68,7 +69,7 @@
                 <svg [cIcon]="icons.cilX" title="Cancel"></svg>
                 Cancel</button>
 
-            <button cButton color="warning" class="text-uppercase fs-7 fw-light">
+            <button cButton color="warning" class="text-uppercase fs-7 fw-light" (click)="onAddToCart()">
                 <svg [cIcon]="icons.cilCart" title="Add to cart"></svg>
                 Add to cart</button>
         </div>
