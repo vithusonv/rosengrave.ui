@@ -15,11 +15,14 @@
                 <ng-template cTemplateId="accordionBodyTemplate">
                     <div class="accordion-body d-flex align-items-center">
                         <c-row>
-                            <c-col md="2" *ngFor="let e of engravings" class="text-center">
-                                <c-card class="mb-3">
-                                    <c-card-header class="fs-7 fw-light">{{ e.label }}</c-card-header>
-                                    <img cCardImg="top" src="{{ e.image_url }}" [style.height.px]="80">
-                                </c-card>
+                            <c-col md="2" *ngFor="let e of engravings; index as i" class="text-center">
+                                <!-- <label for="engraving"> -->
+                                    <input type="radio" name="engraving" value="{{ e.predefined_engraving_id }}" id="engraving" />
+                                    <c-card class="mb-3 card">
+                                        <c-card-header class="fs-7 fw-light">{{ e.label }}</c-card-header>
+                                        <img cCardImg="top" src="{{ e.image_url }}" [style.height.px]="80">
+                                    </c-card>
+                                <!-- </label> -->
                             </c-col>
                         </c-row>
                     </div>

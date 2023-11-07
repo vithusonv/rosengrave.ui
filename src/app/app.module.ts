@@ -21,6 +21,7 @@ import { CartModule } from './components/cart/cart.module';
 import { CustomizeItemModule } from './components/customize-item/customize-item.module';
 
 import {
+  AccordionModule,
   AvatarModule,
   BadgeModule,
   BreadcrumbModule,
@@ -89,7 +90,8 @@ const APP_CONTAINERS = [
     ProductsModule,
     ModalModule,
     CartModule,
-    CustomizeItemModule
+    CustomizeItemModule,
+    AccordionModule
   ],
   providers: [
     {

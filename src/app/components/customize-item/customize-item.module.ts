@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomizeItemComponent } from './customize-item.component';
 import { IconModule } from '@coreui/icons-angular';
-import { AccordionModule, ButtonModule, CardModule, GridModule, OffcanvasModule } from '@coreui/angular';
+import { AccordionModule, ButtonModule, CardModule, GridModule, OffcanvasModule, SharedModule } from '@coreui/angular';
 
 @NgModule({
   declarations: [CustomizeItemComponent],
@@ -13,7 +13,8 @@ import { AccordionModule, ButtonModule, CardModule, GridModule, OffcanvasModule 
     OffcanvasModule,
     AccordionModule,
     CardModule,
-    GridModule
+    GridModule,
+    SharedModule
   ],
   exports: [CustomizeItemComponent]
 })

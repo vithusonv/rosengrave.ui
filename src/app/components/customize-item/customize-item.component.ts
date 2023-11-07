@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { cilCart } from '@coreui/icons';
+import { cilCart, cilX } from '@coreui/icons';
 import { CustomizeItemService } from 'src/app/services/customize-item/customize-item.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class CustomizeItemComponent {
   public offCanvasVisible: boolean = false;
   public engravings: any; // TODO: make engraving interface
   public icons: any;
+  items = [1, 2, 3, 4];
   
   constructor(private customizeItemService: CustomizeItemService,
     private http: HttpClient) {
@@ -20,7 +21,7 @@ export class CustomizeItemComponent {
       this.offCanvasVisible = isVisible;
     });
 
-    this.icons = { cilCart };
+    this.icons = { cilCart, cilX };
   }
 
   ngOnInit(): void {
