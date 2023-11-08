@@ -1,10 +1,16 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ProductsComponent } from './products.component';
-import { BadgeModule, ButtonModule, CardModule, GridModule } from '@coreui/angular';
-import { IconModule } from '@coreui/icons-angular';
-
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ProductsComponent } from "./products.component";
+import {
+  BadgeModule,
+  ButtonModule,
+  CardModule,
+  GridModule,
+  HeaderModule,
+  NavModule,
+  TabsModule,
+} from "@coreui/angular";
+import { IconModule } from "@coreui/icons-angular";
 
 @NgModule({
   declarations: [ProductsComponent],
@@ -14,8 +20,11 @@ import { IconModule } from '@coreui/icons-angular';
     IconModule,
     GridModule,
     ButtonModule,
-    BadgeModule
+    BadgeModule,
+    NavModule,
+    TabsModule,
+    HeaderModule,
   ],
-  exports: [ProductsComponent]
+  exports: [ProductsComponent],
 })
-export class ProductsModule { }
+export class ProductsModule {}
