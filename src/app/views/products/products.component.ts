@@ -42,11 +42,13 @@ export class ProductsComponent {
       )
       .subscribe((products) => {
         this.products2 = products;
+        console.log(this.products2);
       });
   }
 
   onProductView(index: number): void {
     this.products = this.productCategories[index].products;
+    console.log(this.products);
   }
 
   onCustomizeProduct(product: Product): void {
@@ -56,5 +58,36 @@ export class ProductsComponent {
 
   onTabChange($event: number) {
     this.activePane = 0;
+  }
+
+  onSort(event: Event) {
+    switch ((event.target as HTMLSelectElement).value) {
+      case "0":
+        this.products.sort((a, b) => {
+          return a.product_name === b.product_name
+            ? 0
+            : a.product_name < b.product_name
+            ? -1
+            : 1;
+        });
+        this.products2.sort((a: any, b: any) => {
+          return a.product_name === b.product_name
+            ? 0
+            : a.product_name < b.product_name
+            ? -1
+            : 1;
+        });
+        break;
+      case "1":
+        this.products.sort((a, b) => {
+          return a.price - b.price;
+        });
+        break;
+      case "2":
+        this.products.sort((a, b) => {
+          return b.price - a.price;
+        });
+        break;
+    }
   }
 }
