@@ -4,6 +4,7 @@ import { cilCart, cilPencil, cilX } from "@coreui/icons";
 import { Product } from "../../models/product.model";
 import { CartService } from "../../services/cart/cart.service";
 import { CustomizeItemService } from "src/app/services/customize-item/customize-item.service";
+import { ALL_CATEGORIES } from "../../models/product-categories.model";
 
 @Component({
   selector: "app-products",
@@ -32,7 +33,7 @@ export class ProductsComponent {
       )
       .subscribe((pc) => {
         this.productCategories = pc;
-        console.log(pc);
+        this.productCategories.unshift(ALL_CATEGORIES);
       });
 
     this.http
@@ -40,9 +41,7 @@ export class ProductsComponent {
         "https://rosengrave-api-25bb9d185119.herokuapp.com/api/products"
       )
       .subscribe((products) => {
-        console.log(products);
         this.products2 = products;
-        // this.products = products;
       });
   }
 
@@ -57,6 +56,5 @@ export class ProductsComponent {
 
   onTabChange($event: number) {
     this.activePane = 0;
-    console.log("onTabChange", $event);
   }
 }

@@ -5,6 +5,7 @@ import {
   BadgeModule,
   ButtonModule,
   CardModule,
+  FormModule,
   GridModule,
   HeaderModule,
   NavModule,
@@ -24,6 +25,7 @@ import { IconModule } from "@coreui/icons-angular";
     NavModule,
     TabsModule,
     HeaderModule,
+    FormModule,
   ],
   exports: [ProductsComponent],
 })
