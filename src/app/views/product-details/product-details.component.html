@@ -1,0 +1,52 @@
+<c-row>
+  <c-col>
+    <c-card *ngIf="product; else errorTemplate" class="mb-3">
+      <c-row class="g-0">
+        <c-col [md]="6">
+          <img
+            [cCardImg]
+            src="{{ product.product_images[0].image_secure_url }}" />
+        </c-col>
+        <c-card-body cCol [md]="6">
+          <h5 class="mb-0" cCardTitle>{{ product.product_name }}</h5>
+          <hr />
+          <p cCardText>Price: ${{ product.product_price }} CAD</p>
+          <p cCardText class="fw-light">
+            {{ product.product_detailed_description }}
+          </p>
+          <div cFormFloating class="mb-3">
+            <select cSelect>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            <label cLabel for="floatingSelectGrid">Quantity</label>
+          </div>
+          <div class="d-grid gap-2">
+            <button
+              cButton
+              color="info"
+              (click)="onCustomizeProduct(product)"
+              class="text-uppercase fs-7 fw-light">
+              <svg [cIcon]="icons.cilPencil" title="Customize"></svg>
+              Customize
+            </button>
+            <button cButton color="dark" class="text-uppercase fs-7 fw-light">
+              <svg [cIcon]="icons.cilCart" title="Buy Now"></svg>
+              Buy Now
+            </button>
+          </div>
+        </c-card-body>
+      </c-row>
+    </c-card>
+  </c-col>
+</c-row>
+
+<ng-template #errorTemplate>
+  <div class="text-center fs-3 fw-light mt-5">
+    <div class="fw-bold">Oops!</div>
+    We couldn't find that product.
+  </div>
+</ng-template>

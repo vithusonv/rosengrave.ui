@@ -2,37 +2,41 @@
   <c-carousel [dark]="false" [wrap]="false">
     <c-carousel-indicators></c-carousel-indicators>
     <c-carousel-inner>
-      <c-carousel-item *ngFor="let slide of slides; index as i;">
-        <img [src]="slide.src" alt="{{slide.title}}" class="d-block w-100" loading="lazy" [style.height.px]="600" />
+      <c-carousel-item *ngFor="let slide of slides; index as i">
+        <img
+          [src]="slide.src"
+          alt="{{ slide.title }}"
+          class="d-block w-100"
+          loading="lazy"
+          [style.height.px]="600" />
         <c-carousel-caption class="d-none d-md-block">
-          <h3>{{slide.title}}</h3>
-          <p>{{slide.subtitle}}</p>
+          <h3>{{ slide.title }}</h3>
+          <p>{{ slide.subtitle }}</p>
         </c-carousel-caption>
       </c-carousel-item>
     </c-carousel-inner>
-    <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
-    <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
+    <c-carousel-control
+      [routerLink]
+      caption="Previous"
+      direction="prev"></c-carousel-control>
+    <c-carousel-control
+      [routerLink]
+      caption="Next"
+      direction="next"></c-carousel-control>
   </c-carousel>
 
-  <div class="mt-3">
-    <c-row>
-      <c-col *ngFor="let p of products; index as i" md="3">
-        <c-card class="mb-3">
-          <img cCardImg="top" src="{{ p.images[0]?.image_url }}" [style.height.px]="215">
-          <c-card-body>
-            <h6 cCardTitle>{{ p.product_name }}</h6>
-            <p cCardText>{{ p.short_description }}</p>
-          </c-card-body>
-          <c-card-footer>
-            <div class="d-grid gap-2">
-              <button cButton color="warning" class="text-uppercase fs-7 fw-light" cOffcanvasToggle="OffcanvasBottom"
-                (click)="setProductToCustomize(i)">
-                <svg [cIcon]="icons.cilCart" title="Add to cart"></svg>
-                Add to cart</button>
-            </div>
-          </c-card-footer>
-        </c-card>
-      </c-col>
-    </c-row>
+  <div class="mt-3 d-flex justify-content-center">
+    <div class="d-grid gap-2" [style.width.%]="100">
+      <button
+        cButton
+        color="primary"
+        routerLink="/products"
+        size="lg"
+        variant="outline"
+        class="text-uppercase fs-7 fw-light">
+        <svg [cIcon]="icons.cil3d" title="Add to cart"></svg>
+        See all products
+      </button>
+    </div>
   </div>
 </c-container>

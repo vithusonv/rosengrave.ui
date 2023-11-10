@@ -23,77 +23,52 @@
     [activeTabPaneIdx]="activePane"
     (activeTabPaneIdxChange)="onTabChange($event)">
     <c-tab-pane class="p-3" *ngFor="let c of productCategories; index as i">
-      <c-row class="d-flex">
+      <c-row class="d-flex align-items-center">
         <c-col md="7">
           <h4>Products</h4>
         </c-col>
         <c-col md="5" class="d-flex justify-content-end">
-          <select
-            [style.width.%]="50"
-            aria-label="Large select example"
-            cSelect
-            (change)="onSort($event)"
-            class="mb-3">
-            <option value="0">Name</option>
-            <option value="1">Price: High to Low</option>
-            <option value="2">Price: Low to High</option>
-          </select>
+          <div cFormFloating>
+            <select
+              aria-label="Large select example"
+              cSelect
+              (change)="onSortProducts($event)"
+              id="floatingSelect"
+              class="mb-3">
+              <option>None</option>
+              <option value="0">Name: A-Z</option>
+              <option value="1">Name: Z-A</option>
+              <option value="2">Price: High to Low</option>
+              <option value="3">Price: Low to High</option>
+            </select>
+            <label cLabel for="floatingSelect">Filters</label>
+          </div>
         </c-col>
       </c-row>
       <hr class="m-0" />
-      <c-row *ngIf="products2 && !products.length">
+      <c-row *ngIf="filteredProducts">
         <div class="mt-3">
           <c-row>
-            <c-col *ngFor="let p of products2" md="3">
+            <c-col *ngFor="let p of filteredProducts" md="3">
               <c-card class="mb-3 fade-in">
                 <div>
                   <h5 class="m-0 p-0">
                     <!-- <c-badge color="dark" class="price">${{ p.product_price }}</c-badge> -->
                   </h5>
                   <img
-                    cCardImg="top"
-                    src="{{ p.images[0]?.image_secure_url }}"
-                    [style.max-height.px]="190" />
-                </div>
-                <c-card-body>
-                  <h6 cCardTitle class="text-center">{{ p.product_name }}</h6>
-                  <!-- <p cCardText>{{ p.product_description }}</p> -->
-                </c-card-body>
-                <c-card-footer>
-                  <div class="d-grid gap-2">
-                    <button
-                      cButton
-                      color="warning"
-                      class="text-uppercase fs-7 fw-light"
-                      (click)="onCustomizeProduct(p)"
-                      cOffcanvasToggle="OffcanvasBottom">
-                      <svg [cIcon]="icons.cilPencil" title="Customize"></svg>
-                      Customize
-                    </button>
-                  </div>
-                </c-card-footer>
-              </c-card>
-            </c-col>
-          </c-row>
-        </div>
-      </c-row>
-      <c-row *ngIf="products">
-        <div class="mt-3">
-          <c-row>
-            <c-col *ngFor="let p of products" md="3">
-              <c-card class="mb-3 fade-in">
-                <div>
-                  <h5 class="m-0 p-0">
-                    <!-- <c-badge color="dark" class="price">${{ p.product_price }}</c-badge> -->
-                  </h5>
-                  <img
+                    routerLink="/product-details/{{ p.product_id }}"
                     cCardImg="top"
                     src="{{ p.product_images[0]?.image_secure_url }}"
                     [style.max-height.px]="190" />
                 </div>
                 <c-card-body>
-                  <h6 cCardTitle class="text-center">{{ p.product_name }}</h6>
-                  <!-- <p cCardText>{{ p.product_description }}</p> -->
+                  <h6
+                    cCardTitle
+                    class="text-center"
+                    routerLink="/product-details/{{ p.product_id }}">
+                    {{ p.product_name }}
+                  </h6>
+                  <p cCardText>{{ p.product_description }}</p>
                 </c-card-body>
                 <c-card-footer>
                   <div class="d-grid gap-2">

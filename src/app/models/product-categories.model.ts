@@ -1,3 +1,5 @@
+import { Product } from "src/app/models/product.model";
+
 export const ALL_CATEGORIES: ProductCategories = {
   category_id: null,
   category_name: "All",
@@ -11,5 +13,5 @@ export interface ProductCategories {
   category_name: string;
   image_secure_url: string | null;
   image_url: string | null;
-  products: Array<any>;
+  products: Array<Product>;
 }

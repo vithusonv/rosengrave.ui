@@ -2,9 +2,11 @@ import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { cilCart, cilPencil, cilX } from "@coreui/icons";
 import { Product } from "../../models/product.model";
-import { CartService } from "../../services/cart/cart.service";
 import { CustomizeItemService } from "src/app/services/customize-item/customize-item.service";
-import { ALL_CATEGORIES } from "../../models/product-categories.model";
+import {
+  ALL_CATEGORIES,
+  ProductCategories,
+} from "../../models/product-categories.model";
 
 @Component({
   selector: "app-products",
@@ -12,15 +14,14 @@ import { ALL_CATEGORIES } from "../../models/product-categories.model";
   styleUrls: ["./products.component.scss"],
 })
 export class ProductsComponent {
-  public productCategories: Array<any> = [];
-  public products: Array<any> = [];
   public icons: any;
   public activePane: number = 0;
-  public products2: any;
+  public allProducts: Array<Product> = new Array();
+  public filteredProducts: Array<Product> = new Array();
+  public productCategories: Array<ProductCategories> = new Array();
 
   constructor(
     private http: HttpClient,
-    private cartService: CartService,
     private customizeItemService: CustomizeItemService
   ) {
     this.icons = { cilCart, cilX, cilPencil };
@@ -31,8 +32,8 @@ export class ProductsComponent {
       .get<any>(
         "https://rosengrave-api-25bb9d185119.herokuapp.com/api/product-categories"
       )
-      .subscribe((pc) => {
-        this.productCategories = pc;
+      .subscribe((productCategories) => {
+        this.productCategories = productCategories;
         this.productCategories.unshift(ALL_CATEGORIES);
       });
 
@@ -41,14 +42,14 @@ export class ProductsComponent {
         "https://rosengrave-api-25bb9d185119.herokuapp.com/api/products"
       )
       .subscribe((products) => {
-        this.products2 = products;
-        console.log(this.products2);
+        this.allProducts = products;
+        // set filtered products to all products initiallyß
+        this.filteredProducts = [...this.allProducts];
       });
   }
 
   onProductView(index: number): void {
-    this.products = this.productCategories[index].products;
-    console.log(this.products);
+    this.filteredProducts = this.productCategories[index].products;
   }
 
   onCustomizeProduct(product: Product): void {
@@ -57,36 +58,35 @@ export class ProductsComponent {
   }
 
   onTabChange($event: number) {
-    this.activePane = 0;
+    if ($event === 0) {
+      this.filteredProducts = this.allProducts;
+    }
   }
 
-  onSort(event: Event) {
+  onSortProducts(event: Event) {
     switch ((event.target as HTMLSelectElement).value) {
       case "0":
-        this.products.sort((a, b) => {
-          return a.product_name === b.product_name
-            ? 0
-            : a.product_name < b.product_name
-            ? -1
-            : 1;
-        });
-        this.products2.sort((a: any, b: any) => {
-          return a.product_name === b.product_name
-            ? 0
-            : a.product_name < b.product_name
-            ? -1
-            : 1;
-        });
+        this.filteredProducts.sort((a, b) =>
+          a.product_name.localeCompare(b.product_name)
+        );
         break;
       case "1":
-        this.products.sort((a, b) => {
-          return a.price - b.price;
-        });
+        this.filteredProducts.sort((a, b) =>
+          b.product_name.localeCompare(a.product_name)
+        );
         break;
       case "2":
-        this.products.sort((a, b) => {
-          return b.price - a.price;
+        this.filteredProducts.sort((a, b) => {
+          return a.product_price - b.product_price;
         });
+        break;
+      case "3":
+        this.filteredProducts.sort((a, b) => {
+          return b.product_price - a.product_price;
+        });
+        break;
+      default:
+        this.filteredProducts = this.allProducts;
         break;
     }
   }

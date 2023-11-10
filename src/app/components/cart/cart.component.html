@@ -1,20 +1,34 @@
-<c-offcanvas id="OffcanvasScroll" [scroll]="true" placement="end" [visible]="offcanvasVisible"
-  (visibleChange)="toggleCart($event)" #offcanvasScroll>
+<c-offcanvas
+  id="OffcanvasScroll"
+  [scroll]="true"
+  placement="end"
+  [visible]="offcanvasVisible"
+  (visibleChange)="toggleCart($event)"
+  #offcanvasScroll>
   <c-offcanvas-header>
     <h5 cOffcanvasTitle>Cart</h5>
-    <button aria-label="Close" cButtonClose [cOffcanvasToggle]="offcanvasScroll.id" class="text-reset"></button>
+    <button
+      aria-label="Close"
+      cButtonClose
+      [cOffcanvasToggle]="offcanvasScroll.id"
+      class="text-reset"></button>
   </c-offcanvas-header>
   <c-offcanvas-body class="scroll-cart">
     <h6 *ngIf="!cartItems.length">No items in cart!</h6>
     <c-card class="mb-3" *ngFor="let item of cartItems">
       <c-row class="g-0">
         <c-col [md]="5">
-          <img [cCardImg] src="{{ item.product.product_images[0].image_url }}">
+          <img
+            [cCardImg]
+            src="{{ item.product.product_images[0].image_url }}" />
         </c-col>
         <c-card-body cCol [md]="7" class="py-1">
           <h6 cCardTitle class="mb-0">{{ item.product.product_name }}</h6>
-          <p class="h6 fw-light mb-0">${{ item.product.product_price.toFixed(2) }} CAD</p>
+          <p class="h6 fw-light mb-0">${{ item.product.product_price }} CAD</p>
           <div cCardText class="fs-7">by rosengrave</div>
+          <div cCardText class="fs-7">
+            <b>design:</b> {{ item.design.label }}
+          </div>
           <p cCardText class="d-flex align-items-center mt-4">
             <c-dropdown class="me-1">
               <a cButton cDropdownToggle color="light" class="py-0">
@@ -27,7 +41,8 @@
               </ul>
             </c-dropdown>
             <small class="text-medium-emphasis">
-              <a href="#">Delete</a> | <a href="#">Share</a></small>
+              <a href="#">Delete</a> | <a href="#">Share</a></small
+            >
           </p>
         </c-card-body>
       </c-row>
@@ -36,7 +51,8 @@
     <h5>Total: ${{ getTotalCartPrice() }} CAD</h5>
     <div class="d-grid gap-2">
       <button cButton color="info" class="text-uppercase fs-7 fw-light mt-4">
-        Order</button>
+        Order
+      </button>
     </div>
   </c-offcanvas-body>
 </c-offcanvas>

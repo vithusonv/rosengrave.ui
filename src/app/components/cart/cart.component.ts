@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { CartItem } from 'src/app/models/cart-item.model';
-import { CartService } from 'src/app/services/cart/cart.service';
+import { Component } from "@angular/core";
+import { Subscription } from "rxjs";
+import { CartItem } from "src/app/models/cart-item.model";
+import { CartService } from "src/app/services/cart/cart.service";
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  selector: "app-cart",
+  templateUrl: "./cart.component.html",
+  styleUrls: ["./cart.component.scss"],
 })
 export class CartComponent {
   public offcanvasVisible: boolean = false;
@@ -18,14 +18,15 @@ export class CartComponent {
       this.offcanvasVisible = isVisible;
     });
 
-    this.cartItemsSubscription = this.cartService.cartItems$.subscribe((cartItems) => {
-      this.cartItems = cartItems;
-    });
+    this.cartItemsSubscription = this.cartService.cartItems$.subscribe(
+      (cartItems) => {
+        this.cartItems = cartItems;
+        console.log(cartItems);
+      }
+    );
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.cartItemsSubscription.unsubscribe();

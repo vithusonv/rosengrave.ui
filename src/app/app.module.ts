@@ -1,25 +1,34 @@
-import { NgModule } from '@angular/core';
-import { HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { BrowserModule, Title } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import {
+  HashLocationStrategy,
+  LocationStrategy,
+  PathLocationStrategy,
+} from "@angular/common";
+import { BrowserModule, Title } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ReactiveFormsModule } from "@angular/forms";
 
-import { NgScrollbarModule } from 'ngx-scrollbar';
+import { NgScrollbarModule } from "ngx-scrollbar";
 
 // Import routing module
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from "./app-routing.module";
 
 // Import app component
-import { AppComponent } from './app.component';
+import { AppComponent } from "./app.component";
 
 // Import containers
-import { DefaultFooterComponent, DefaultHeaderComponent, DefaultLayoutComponent } from './containers';
+import {
+  DefaultFooterComponent,
+  DefaultHeaderComponent,
+  DefaultLayoutComponent,
+} from "./containers";
 
-import { HomeModule } from './views/home/home.module';
-import { ProductsModule } from './views/products/products.module';
-import { CartModule } from './components/cart/cart.module';
-import { CustomizeItemModule } from './components/customize-item/customize-item.module';
-import { FontSelectorModule } from './components/font-selector/font-selector.module';
+import { HomeModule } from "./views/home/home.module";
+import { ProductsModule } from "./views/products/products.module";
+import { ProductDetailsModule } from "./views/product-details/product-details.module";
+import { CartModule } from "./components/cart/cart.module";
+import { CustomizeItemModule } from "./components/customize-item/customize-item.module";
+import { FontSelectorModule } from "./components/font-selector/font-selector.module";
 
 import {
   AccordionModule,
@@ -44,15 +53,15 @@ import {
   SharedModule,
   SidebarModule,
   TabsModule,
-  UtilitiesModule
-} from '@coreui/angular';
+  UtilitiesModule,
+} from "@coreui/angular";
 
-import { IconModule, IconSetService } from '@coreui/icons-angular';
+import { IconModule, IconSetService } from "@coreui/icons-angular";
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
   DefaultHeaderComponent,
-  DefaultLayoutComponent
+  DefaultLayoutComponent,
 ];
 
 @NgModule({
@@ -89,6 +98,7 @@ const APP_CONTAINERS = [
     CarouselModule,
     HomeModule,
     ProductsModule,
+    ProductDetailsModule,
     ModalModule,
     CartModule,
     CustomizeItemModule,
@@ -98,12 +108,11 @@ const APP_CONTAINERS = [
   providers: [
     {
       provide: LocationStrategy,
-      useClass: HashLocationStrategy
+      useClass: HashLocationStrategy,
     },
     IconSetService,
-    Title
+    Title,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
