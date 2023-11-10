@@ -1,93 +1,97 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
-import { DefaultLayoutComponent } from './containers';
-import { Page404Component } from './views/pages/page404/page404.component';
-import { Page500Component } from './views/pages/page500/page500.component';
-import { LoginComponent } from './views/pages/login/login.component';
-import { RegisterComponent } from './views/pages/register/register.component';
-import { HomeComponent } from './views/home/home.component';
-import { AboutComponent } from './views/about/about.component';
-import { ProductsComponent } from './views/products/products.component';
-import { HowToOrderComponent } from './views/how-to-order/how-to-order.component';
+import { DefaultLayoutComponent } from "./containers";
+import { Page404Component } from "./views/pages/page404/page404.component";
+import { Page500Component } from "./views/pages/page500/page500.component";
+import { LoginComponent } from "./views/pages/login/login.component";
+import { RegisterComponent } from "./views/pages/register/register.component";
+import { HomeComponent } from "./views/home/home.component";
+import { AboutComponent } from "./views/about/about.component";
+import { ProductsComponent } from "./views/products/products.component";
+import { HowToOrderComponent } from "./views/how-to-order/how-to-order.component";
+import { ProductDetailsComponent } from "./views/product-details/product-details.component";
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'products',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "products",
+    pathMatch: "full",
   },
   {
-    path: '',
+    path: "",
     component: DefaultLayoutComponent,
     data: {
-      title: 'Home'
+      title: "Home",
     },
     children: [
       {
-        path: 'home',
-        component: HomeComponent
+        path: "home",
+        component: HomeComponent,
       },
       {
-        path: 'about',
-        component: AboutComponent
+        path: "about",
+        component: AboutComponent,
       },
       {
-        path: 'qr-code',
-        component: HowToOrderComponent
+        path: "qr-code",
+        component: HowToOrderComponent,
       },
       {
-        path: 'products',
-        component: ProductsComponent
+        path: "products",
+        component: ProductsComponent,
       },
       {
-        path: 'pages',
+        path: "product-details/:productId",
+        component: ProductDetailsComponent,
+      },
+      {
+        path: "pages",
         loadChildren: () =>
-          import('./views/pages/pages.module').then((m) => m.PagesModule)
+          import("./views/pages/pages.module").then((m) => m.PagesModule),
       },
-    ]
+    ],
   },
   {
-    path: '404',
+    path: "404",
     component: Page404Component,
     data: {
-      title: 'Page 404'
-    }
+      title: "Page 404",
+    },
   },
   {
-    path: '500',
+    path: "500",
     component: Page500Component,
     data: {
-      title: 'Page 500'
-    }
+      title: "Page 500",
+    },
   },
   {
-    path: 'login',
+    path: "login",
     component: LoginComponent,
     data: {
-      title: 'Login Page'
-    }
+      title: "Login Page",
+    },
   },
   {
-    path: 'register',
+    path: "register",
     component: RegisterComponent,
     data: {
-      title: 'Register Page'
-    }
+      title: "Register Page",
+    },
   },
-  {path: '**', redirectTo: 'dashboard'}
+  { path: "**", redirectTo: "dashboard" },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      scrollPositionRestoration: 'top',
-      anchorScrolling: 'enabled',
-      initialNavigation: 'enabledBlocking'
+      scrollPositionRestoration: "top",
+      anchorScrolling: "enabled",
+      initialNavigation: "enabledBlocking",
       // relativeLinkResolution: 'legacy'
-    })
+    }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
