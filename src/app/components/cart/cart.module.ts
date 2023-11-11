@@ -1,7 +1,15 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CartComponent } from './cart.component';
-import { ButtonModule, CardModule, DropdownModule, FormModule, GridModule, OffcanvasModule } from '@coreui/angular';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { CartComponent } from "./cart.component";
+import {
+  ButtonModule,
+  CardModule,
+  DropdownModule,
+  FormModule,
+  GridModule,
+  OffcanvasModule,
+} from "@coreui/angular";
+import { RouterLink } from "@angular/router";
 
 @NgModule({
   declarations: [CartComponent],
@@ -12,8 +20,9 @@ import { ButtonModule, CardModule, DropdownModule, FormModule, GridModule, Offca
     GridModule,
     CardModule,
     DropdownModule,
-    FormModule
+    FormModule,
+    RouterLink,
   ],
   exports: [CartComponent],
 })
-export class CartModule { }
+export class CartModule {}

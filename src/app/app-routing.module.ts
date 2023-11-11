@@ -1,3 +1,4 @@
+import { CheckoutComponent } from "./views/checkout/checkout.component";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
@@ -44,6 +45,10 @@ const routes: Routes = [
       {
         path: "product-details/:productId",
         component: ProductDetailsComponent,
+      },
+      {
+        path: "checkout",
+        component: CheckoutComponent,
       },
       {
         path: "pages",

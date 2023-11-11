@@ -1,4 +1,7 @@
+import { CheckoutModule } from "./views/checkout/checkout.module";
 import { NgModule } from "@angular/core";
+import { NgxStripeModule } from "ngx-stripe";
+
 import {
   HashLocationStrategy,
   LocationStrategy,
@@ -102,8 +105,12 @@ const APP_CONTAINERS = [
     ModalModule,
     CartModule,
     CustomizeItemModule,
+    CheckoutModule,
     AccordionModule,
     FontSelectorModule,
+    NgxStripeModule.forRoot(
+      "pk_live_51OB6RJDweK0b9wbo0sN422p3AVZ00jonAw7WEMZxygTjKFGKp2ZyInGjajP3A3nBsu57rX9tDHDQjOFqPDhmpWhe005RScnf3Q"
+    ),
   ],
   providers: [
     {
