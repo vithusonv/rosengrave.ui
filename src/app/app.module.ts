@@ -1,6 +1,4 @@
-import { CheckoutModule } from "./views/checkout/checkout.module";
 import { NgModule } from "@angular/core";
-import { NgxStripeModule } from "ngx-stripe";
 
 import {
   HashLocationStrategy,
@@ -32,6 +30,7 @@ import { ProductDetailsModule } from "./views/product-details/product-details.mo
 import { CartModule } from "./components/cart/cart.module";
 import { CustomizeItemModule } from "./components/customize-item/customize-item.module";
 import { FontSelectorModule } from "./components/font-selector/font-selector.module";
+import { CheckoutModule } from "./views/checkout/checkout.module";
 
 import {
   AccordionModule,
@@ -108,9 +107,9 @@ const APP_CONTAINERS = [
     CheckoutModule,
     AccordionModule,
     FontSelectorModule,
-    NgxStripeModule.forRoot(
-      "pk_live_51OB6RJDweK0b9wbo0sN422p3AVZ00jonAw7WEMZxygTjKFGKp2ZyInGjajP3A3nBsu57rX9tDHDQjOFqPDhmpWhe005RScnf3Q"
-    ),
+    // NgxStripeModule.forRoot(
+    //   "pk_live_51OB6RJDweK0b9wbo0sN422p3AVZ00jonAw7WEMZxygTjKFGKp2ZyInGjajP3A3nBsu57rX9tDHDQjOFqPDhmpWhe005RScnf3Q"
+    // ),
   ],
   providers: [
     {
