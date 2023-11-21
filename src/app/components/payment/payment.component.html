@@ -1,6 +1,70 @@
-<form (submit)="handlePayment()">
-  <label for="card-element">Credit or debit card</label>
-  <div #cardElement id="card-element"></div>
+<form>
+  <c-row>
+    <c-col md="8">
+      <ng-container>
+        <div *ngIf="!shippingLoader" #addressElement id="address-element"></div>
+        <div
+          *ngIf="shippingLoader"
+          class="d-flex align-items-center text-uppercase fs-6 fw-semibold">
+          <c-spinner size="sm" variant="grow"></c-spinner>
+          <span class="d-flex ms-2">calculating shipping cost...</span>
+        </div>
+        <button *ngIf="!shippingCost" cButton (click)="onCalculateShipping()">
+          Calculate Shipping
+        </button>
+      </ng-container>
 
-  <button type="submit">Pay</button>
+      <div #cardElement id="card-element"></div>
+    </c-col>
+    <c-col md="4">
+      <c-card class="text-center mb-4">
+        <c-card-body class="px-4">
+          <h4 cCardTitle>Order Summary</h4>
+          <table borderless cTable hover class="w-100 fs-6 fw-semibold">
+            <tbody>
+              <tr>
+                <td class="text-start">Items ({{ quantitySum }}):</td>
+                <td class="text-end">
+                  {{ cartService.getTotalPrice() || "--" }}
+                </td>
+              </tr>
+              <tr>
+                <td class="text-start pb-2">Shipping & Handling:</td>
+                <td class="text-end border-bottom border-bottom-secondary pb-2">
+                  {{ shippingCost?.toString() || "--" }}
+                </td>
+              </tr>
+              <tr>
+                <td class="text-start pt-2">Total before tax:</td>
+                <td class="text-end pt-2">
+                  {{ totalBeforeTax?.toString() || "--" }}
+                </td>
+              </tr>
+              <tr>
+                <td class="text-start pb-2">Estimated GST/HST:</td>
+                <td class="text-end pb-2">
+                  {{ hstTotal?.toString() || "--" }}
+                </td>
+              </tr>
+            </tbody>
+            <tfoot class="border-top border-top-secondary text-info">
+              <tr class="fs-5">
+                <td class="text-start pt-2">Order Total:</td>
+                <td class="text-end pt-2">
+                  <span *ngIf="orderTotal !== null && orderTotal !== undefined"
+                    >$</span
+                  >
+                  {{ orderTotal?.toString() || "--" }}
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </c-card-body>
+        <c-card-footer class="fs-7" *ngIf="!shippingCost">
+          Choose an address to continue checking out. You'll still have a chance
+          to review and edit your order before it's final.</c-card-footer
+        >
+      </c-card>
+    </c-col>
+  </c-row>
 </form>

@@ -7,4 +7,5 @@ export interface Product {
   product_images: Array<any>;
   created_at: Date;
   updated_at: Date;
+  product_dimensions: any;
 }
