@@ -1,70 +1,102 @@
-<form>
-  <c-row>
-    <c-col md="8">
-      <ng-container>
-        <div *ngIf="!shippingLoader" #addressElement id="address-element"></div>
-        <div
-          *ngIf="shippingLoader"
-          class="d-flex align-items-center text-uppercase fs-6 fw-semibold">
-          <c-spinner size="sm" variant="grow"></c-spinner>
-          <span class="d-flex ms-2">calculating shipping cost...</span>
-        </div>
-        <button *ngIf="!shippingCost" cButton (click)="onCalculateShipping()">
-          Calculate Shipping
-        </button>
-      </ng-container>
-
-      <div #cardElement id="card-element"></div>
-    </c-col>
-    <c-col md="4">
-      <c-card class="text-center mb-4">
-        <c-card-body class="px-4">
-          <h4 cCardTitle>Order Summary</h4>
-          <table borderless cTable hover class="w-100 fs-6 fw-semibold">
-            <tbody>
-              <tr>
-                <td class="text-start">Items ({{ quantitySum }}):</td>
-                <td class="text-end">
-                  {{ cartService.getTotalPrice() || "--" }}
-                </td>
-              </tr>
-              <tr>
-                <td class="text-start pb-2">Shipping & Handling:</td>
-                <td class="text-end border-bottom border-bottom-secondary pb-2">
-                  {{ shippingCost?.toString() || "--" }}
-                </td>
-              </tr>
-              <tr>
-                <td class="text-start pt-2">Total before tax:</td>
-                <td class="text-end pt-2">
-                  {{ totalBeforeTax?.toString() || "--" }}
-                </td>
-              </tr>
-              <tr>
-                <td class="text-start pb-2">Estimated GST/HST:</td>
-                <td class="text-end pb-2">
-                  {{ hstTotal?.toString() || "--" }}
-                </td>
-              </tr>
-            </tbody>
-            <tfoot class="border-top border-top-secondary text-info">
-              <tr class="fs-5">
-                <td class="text-start pt-2">Order Total:</td>
-                <td class="text-end pt-2">
-                  <span *ngIf="orderTotal !== null && orderTotal !== undefined"
-                    >$</span
-                  >
-                  {{ orderTotal?.toString() || "--" }}
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-        </c-card-body>
-        <c-card-footer class="fs-7" *ngIf="!shippingCost">
-          Choose an address to continue checking out. You'll still have a chance
-          to review and edit your order before it's final.</c-card-footer
-        >
-      </c-card>
-    </c-col>
-  </c-row>
-</form>
+<div class="wrapper d-flex flex-column min-vh-100 bg-light dark:bg-transparent">
+  <div class="body flex-grow-1 py-5 px-3">
+    <c-container breakpoint="lg" class="h-auto">
+      <form>
+        <c-row>
+          <c-col md="8">
+            <ng-container>
+              <div #addressElement id="address-element"></div>
+              <div
+                *ngIf="shippingLoader"
+                class="d-flex align-items-center text-uppercase fs-6 fw-semibold">
+                <c-spinner size="sm" variant="grow"></c-spinner>
+                <span class="d-flex ms-2">calculating shipping cost...</span>
+              </div>
+              <div
+                *ngIf="paymentLoader"
+                class="d-flex align-items-center text-uppercase fs-6 fw-semibold">
+                <c-spinner size="sm" variant="grow"></c-spinner>
+                <span class="d-flex ms-2">processing payment...</span>
+              </div>
+            </ng-container>
+            <div #cardElement id="card-element"></div>
+          </c-col>
+          <c-col md="4">
+            <c-card class="text-center mb-4">
+              <c-card-body class="px-4">
+                <h4 cCardTitle>Order Summary</h4>
+                <table borderless cTable hover class="w-100 fs-6 fw-semibold">
+                  <tbody>
+                    <tr>
+                      <td class="text-start">Items ({{ quantitySum }}):</td>
+                      <td class="text-end">
+                        {{ cartService.getTotalPrice() || "--" }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-start pb-2">Shipping & Handling:</td>
+                      <td
+                        class="text-end border-bottom border-bottom-secondary pb-2">
+                        {{ shippingCost?.toString() || "--" }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-start pt-2">Total before tax:</td>
+                      <td class="text-end pt-2">
+                        {{ totalBeforeTax?.toString() || "--" }}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-start pb-2">Estimated GST/HST:</td>
+                      <td class="text-end pb-2">
+                        {{ hstTotal?.toFixed(2) || "--" }}
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tfoot class="border-top border-top-secondary text-info">
+                    <tr class="fs-5">
+                      <td class="text-start pt-2">Order Total:</td>
+                      <td class="text-end pt-2">
+                        <span
+                          *ngIf="
+                            orderTotal !== null && orderTotal !== undefined
+                          "
+                          >$</span
+                        >
+                        {{ orderTotal?.toString() || "--" }}
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </c-card-body>
+              <c-card-footer class="fs-7" *ngIf="!shippingCost">
+                Choose an address to continue checking out. You'll still have a
+                chance to review and edit your order before it's final.
+                <div class="d-grid gap-2 mt-2">
+                  <button
+                    cButton
+                    color="info"
+                    class="text-uppercase fs-7"
+                    (click)="onCalculateShipping()">
+                    Ship to this address
+                  </button>
+                </div>
+              </c-card-footer>
+              <c-card-footer class="fs-7" *ngIf="shippingCost">
+                <div class="d-grid gap-2">
+                  <button
+                    cButton
+                    color="info"
+                    class="text-uppercase fs-7"
+                    (click)="handlePayment()">
+                    Place your order
+                  </button>
+                </div>
+              </c-card-footer>
+            </c-card>
+          </c-col>
+        </c-row>
+      </form>
+    </c-container>
+  </div>
+</div>

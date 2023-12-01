@@ -46,8 +46,6 @@ export class CustomizeItemComponent {
         };
 
         this.engravings.unshift(noneOption);
-
-        console.log("*** Engravings: ", engravings);
       });
   }
 
@@ -65,11 +63,7 @@ export class CustomizeItemComponent {
 
   onAddToCart(): void {
     this.cartService.addToCart(this.getProduct(), this.design, this.text);
-
     this.customizeItemService.toggleOffCanvas(false);
-
-    const cart = this.cartService.getCartItems();
-    console.log(cart);
   }
 
   getProduct() {

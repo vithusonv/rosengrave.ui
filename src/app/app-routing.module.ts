@@ -47,15 +47,18 @@ const routes: Routes = [
         component: ProductDetailsComponent,
       },
       {
-        path: "checkout",
-        component: CheckoutComponent,
-      },
-      {
         path: "pages",
         loadChildren: () =>
           import("./views/pages/pages.module").then((m) => m.PagesModule),
       },
     ],
+  },
+  {
+    path: "checkout",
+    component: CheckoutComponent,
+    data: {
+      title: "Rosengrave Checkout",
+    },
   },
   {
     path: "404",
